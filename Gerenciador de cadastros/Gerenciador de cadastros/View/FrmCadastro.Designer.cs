@@ -51,6 +51,7 @@
             this.buttonSalvar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonExcluir = new System.Windows.Forms.Button();
+            this.buttonDuplicar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -270,11 +271,23 @@
             this.buttonExcluir.Visible = false;
             this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
+            // buttonDuplicar
+            // 
+            this.buttonDuplicar.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_duplicata_32;
+            this.buttonDuplicar.Location = new System.Drawing.Point(524, 18);
+            this.buttonDuplicar.Name = "buttonDuplicar";
+            this.buttonDuplicar.Size = new System.Drawing.Size(38, 38);
+            this.buttonDuplicar.TabIndex = 22;
+            this.buttonDuplicar.UseVisualStyleBackColor = true;
+            this.buttonDuplicar.Visible = false;
+            this.buttonDuplicar.Click += new System.EventHandler(this.buttonDuplicar_Click);
+            // 
             // FrmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 380);
+            this.Controls.Add(this.buttonDuplicar);
             this.Controls.Add(this.buttonExcluir);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonSalvar);
@@ -318,5 +331,6 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonExcluir;
         private System.Windows.Forms.Button buttonVisualizarOcularSenha;
+        private System.Windows.Forms.Button buttonDuplicar;
     }
 }

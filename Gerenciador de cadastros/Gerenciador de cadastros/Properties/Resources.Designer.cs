@@ -83,6 +83,16 @@ namespace Gerenciador_de_cadastros.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_duplicata_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-duplicata-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_log_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-log-32", resourceCulture);

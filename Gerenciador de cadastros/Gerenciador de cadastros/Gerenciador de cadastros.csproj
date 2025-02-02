@@ -245,6 +245,7 @@
     <None Include="Resources\icons8-log-32.png" />
     <None Include="Resources\icons8-visualizar-arquivo-16.png" />
     <Content Include="image.ico" />
+    <None Include="Resources\icons8-duplicata-32.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

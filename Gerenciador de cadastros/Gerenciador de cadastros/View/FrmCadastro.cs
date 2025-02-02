@@ -24,6 +24,7 @@ namespace Gerenciador_de_cadastros.View
             _pessoa = pessoa;
             _controllerLog = new ControllerLog(new LogRepositorio(new DatabaseService()));
             toolTip.SetToolTip(buttonExcluir, "Excluir cadastro");
+            toolTip.SetToolTip(buttonDuplicar, "Duplicar cadastro");
         }
 
         public FrmCadastro(IControllerPessoa controller, Pessoa pessoa)
@@ -32,6 +33,8 @@ namespace Gerenciador_de_cadastros.View
             _controller = controller;
             _pessoa = pessoa;
             toolTip.SetToolTip(buttonExcluir, "Excluir cadastro");
+            toolTip.SetToolTip(buttonDuplicar, "Duplicar cadastro");
+
         }
         #endregion
 
@@ -62,6 +65,7 @@ namespace Gerenciador_de_cadastros.View
                 labelId.Text = "ID: " + Convert.ToString(_pessoa.Id);
                 labelId.Visible = true;
                 buttonExcluir.Visible = true;
+                buttonDuplicar.Visible = true;
             }
             maskedTextBoxDescricao.Text = _pessoa.Descricao;
             maskedTextBoxDocumento.Text = _pessoa.Documento;
@@ -214,6 +218,31 @@ namespace Gerenciador_de_cadastros.View
             else
             {
                 maskedTextBoxSenha.UseSystemPasswordChar = true;
+            }
+        }
+        private void buttonDuplicar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Pessoa novaPessoa = new Pessoa
+                {
+                    Descricao = _pessoa.Descricao,
+                    Documento = _pessoa.Documento,
+                    Login = _pessoa.Login,
+                    Senha = _pessoa.Senha,
+                    DataNascimento = _pessoa.DataNascimento,
+                    Telefone = _pessoa.Telefone,
+                    Email = _pessoa.Email,
+                    Endereco = _pessoa.Endereco
+                };
+
+                _controller.AdicionarPessoa(novaPessoa);
+                _controllerLog.GeraLog(new Log {Usuario = UsuarioLogado.Usuario, Rotina = "Cadastro", Descricao = "Usuário duplicado"});
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível duplicar o usuário: " + ex.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
