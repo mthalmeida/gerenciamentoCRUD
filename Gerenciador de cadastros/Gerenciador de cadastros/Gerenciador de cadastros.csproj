@@ -144,8 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Persistencia\DatabaseService.cs" />
+    <Compile Include="Data\Persistencia\Repositorio\LogRepositorio.cs" />
     <Compile Include="Data\Persistencia\Repositorio\PessoaRepositorio.cs" />
+    <Compile Include="Dominio\Entidade\Log.cs" />
     <Compile Include="Dominio\Entidade\Pessoa.cs" />
+    <Compile Include="Dominio\Interface\IRepositorioLog.cs" />
     <Compile Include="Dominio\Interface\IRepositorioPessoa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,7 +157,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Servico\ControllerLog.cs" />
     <Compile Include="Servico\ControllerPessoa.cs" />
+    <Compile Include="Servico\Interface\IControllerLog.cs" />
     <Compile Include="Servico\Interface\IControllerPessoa.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="View\FrmCadastro.cs">
@@ -162,6 +167,18 @@
     </Compile>
     <Compile Include="View\FrmCadastro.Designer.cs">
       <DependentUpon>FrmCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmLogs.Designer.cs">
+      <DependentUpon>FrmLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -183,6 +200,12 @@
     <EmbeddedResource Include="Relatorio\RelatorioPessoa.rdlc" />
     <EmbeddedResource Include="View\FrmCadastro.resx">
       <DependentUpon>FrmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmLogs.resx">
+      <DependentUpon>FrmLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -213,6 +236,9 @@
     <None Include="Resources\icons8-sair-32.png" />
     <None Include="Resources\icons8-pesquisar-16.png" />
     <None Include="Resources\icons8-remover-32 %281%29.png" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\login-escudo-protecao-12870355-10491523.png" />
+    <None Include="Resources\icons8-log-32.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

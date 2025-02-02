@@ -23,7 +23,7 @@ namespace Gerenciador_de_cadastros
             {
                 IRepositorioPessoa repositorio = new PessoaRepositorio(databaseService);
                 IControllerPessoa controller = new ControllerPessoa(repositorio);
-                Application.Run(new FrmPrincipal(controller));
+                Application.Run(new FrmLogin(controller));
             }
             else
             {

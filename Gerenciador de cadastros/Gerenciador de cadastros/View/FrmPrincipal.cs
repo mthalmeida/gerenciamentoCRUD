@@ -1,4 +1,8 @@
-﻿using GerenciadorDeCadastros.Dominio.Entidade;
+﻿using Gerenciador_de_cadastros.Dominio.Entidade;
+using GerenciadorDeCadastros.Data.Persistencia;
+using GerenciadorDeCadastros.Data.Repositorio;
+using GerenciadorDeCadastros.Dominio.Entidade;
+using GerenciadorDeCadastros.Servico;
 using GerenciadorDeCadastros.Servico.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,6 +16,7 @@ namespace Gerenciador_de_cadastros.View
         private IControllerPessoa _controller;
         private BindingSource bindingSource;
         ToolTip toolTip = new ToolTip();
+        private IControllerLog _controllerLog;
 
         #region Construtor
         public FrmPrincipal(IControllerPessoa controller)
@@ -20,6 +25,7 @@ namespace Gerenciador_de_cadastros.View
             _controller = controller;
             bindingSource = new BindingSource();
             dataGridViewPessoas.DataSource = bindingSource;
+            _controllerLog = new ControllerLog(new LogRepositorio(new DatabaseService()));
             AjustarTamanhoTela();
             ImplementaTooltipBotoes();
             CarregarDados();
@@ -34,8 +40,7 @@ namespace Gerenciador_de_cadastros.View
         private void CarregaLabelRodape()
         {
             string dataHoraAtual = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            string usuarioLogado = "Usuário: Admin";
-            labelRodape.Text = dataHoraAtual + " | " + usuarioLogado;
+            labelRodape.Text = dataHoraAtual + " | " + "Usuário logado: " + UsuarioLogado.Usuario;
         }
 
         /// <summary>
@@ -47,6 +52,7 @@ namespace Gerenciador_de_cadastros.View
             toolTip.SetToolTip(buttonAtualizar, "Atualizar lista de cadastros");
             toolTip.SetToolTip(buttonRelatorio, "Imprimir todos os registros");
             toolTip.SetToolTip(buttonSair, "Fechar o sistema");
+            toolTip.SetToolTip(buttonLogs, "Verificar os logs do sistema");
         }
 
         /// <summary>
@@ -111,6 +117,7 @@ namespace Gerenciador_de_cadastros.View
 
             if (result == DialogResult.Yes)
             {
+                _controllerLog.GeraLog(new Log { Usuario = UsuarioLogado.Usuario, Rotina = "Formulário Principal", Descricao = "Usuario desconectado do sistema" });
                 Application.Exit();
             }
         }
@@ -131,6 +138,12 @@ namespace Gerenciador_de_cadastros.View
 
                 bindingSource.DataSource = pessoasFiltradas;
             }
+        }
+       
+        private void buttonLogs_Click(object sender, EventArgs e)
+        {
+            FrmLogs frmLogs = new FrmLogs();
+            frmLogs.ShowDialog();
         }
         #endregion
     }

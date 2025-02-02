@@ -176,5 +176,28 @@ namespace GerenciadorDeCadastros.Data.Repositorio
                 }
             }
         }
+
+        /// <summary>
+        /// Verifica permissão pra acessar o sistema
+        /// </summary>
+        /// <param name="Usuario"></param>
+        /// <param name="Senha"></param>
+        public bool VerificarLogin(String Usuario, String Senha)
+        {
+            using (var connection = new FbConnection(_databaseService.ConnectionString))
+            {
+                connection.Open();
+                using (var cmd = new FbCommand("SELECT 1 FROM PESSOA WHERE PE_LOGIN = @paramLogin AND PE_SENHA = @paramSenha", connection))
+                {
+                    cmd.Parameters.AddWithValue("@paramLogin", Usuario);
+                    cmd.Parameters.AddWithValue("@paramSenha", Senha);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        return reader.Read();
+                    }
+                }
+            }
+        }
     }
 }

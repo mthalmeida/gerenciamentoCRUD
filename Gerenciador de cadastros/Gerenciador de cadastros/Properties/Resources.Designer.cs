@@ -63,9 +63,29 @@ namespace Gerenciador_de_cadastros.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background {
+            get {
+                object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_adicionar_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-adicionar-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_log_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-log-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +136,16 @@ namespace Gerenciador_de_cadastros.Properties {
         internal static System.Drawing.Bitmap icons8_termos_e_condições_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-termos-e-condições-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap login_escudo_protecao_12870355_10491523 {
+            get {
+                object obj = ResourceManager.GetObject("login-escudo-protecao-12870355-10491523", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -14,4 +14,9 @@ namespace GerenciadorDeCadastros.Dominio.Entidade
         public string Email { get; set; }
         public string Endereco { get; set; }
     }
+
+    public static class UsuarioLogado
+    {
+        public static string Usuario { get; set; }
+    }
 }

@@ -30,9 +30,11 @@
         {
             this.dataGridViewPessoas = new System.Windows.Forms.DataGridView();
             this.panelSuperior = new System.Windows.Forms.Panel();
+            this.buttonPesquisar = new System.Windows.Forms.Button();
             this.maskedTextBoxPesquisar = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanelBotoes = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonSair = new System.Windows.Forms.Button();
+            this.buttonLogs = new System.Windows.Forms.Button();
             this.buttonAtualizar = new System.Windows.Forms.Button();
             this.buttonRelatorio = new System.Windows.Forms.Button();
             this.buttonAdicionar = new System.Windows.Forms.Button();
@@ -40,7 +42,6 @@
             this.panelInferior = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelRodape = new System.Windows.Forms.Label();
-            this.buttonPesquisar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPessoas)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.flowLayoutPanelBotoes.SuspendLayout();
@@ -72,6 +73,19 @@
             this.panelSuperior.Size = new System.Drawing.Size(800, 109);
             this.panelSuperior.TabIndex = 4;
             // 
+            // buttonPesquisar
+            // 
+            this.buttonPesquisar.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_pesquisar_16;
+            this.buttonPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonPesquisar.Location = new System.Drawing.Point(268, 68);
+            this.buttonPesquisar.Name = "buttonPesquisar";
+            this.buttonPesquisar.Size = new System.Drawing.Size(78, 25);
+            this.buttonPesquisar.TabIndex = 7;
+            this.buttonPesquisar.Text = "Pesquisar";
+            this.buttonPesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonPesquisar.UseVisualStyleBackColor = true;
+            this.buttonPesquisar.Click += new System.EventHandler(this.buttonPesquisar_Click);
+            // 
             // maskedTextBoxPesquisar
             // 
             this.maskedTextBoxPesquisar.Location = new System.Drawing.Point(15, 71);
@@ -82,6 +96,7 @@
             // flowLayoutPanelBotoes
             // 
             this.flowLayoutPanelBotoes.Controls.Add(this.buttonSair);
+            this.flowLayoutPanelBotoes.Controls.Add(this.buttonLogs);
             this.flowLayoutPanelBotoes.Controls.Add(this.buttonAtualizar);
             this.flowLayoutPanelBotoes.Controls.Add(this.buttonRelatorio);
             this.flowLayoutPanelBotoes.Controls.Add(this.buttonAdicionar);
@@ -105,11 +120,22 @@
             this.buttonSair.UseVisualStyleBackColor = false;
             this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
             // 
+            // buttonLogs
+            // 
+            this.buttonLogs.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonLogs.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_log_32;
+            this.buttonLogs.Location = new System.Drawing.Point(695, 13);
+            this.buttonLogs.Name = "buttonLogs";
+            this.buttonLogs.Size = new System.Drawing.Size(38, 38);
+            this.buttonLogs.TabIndex = 5;
+            this.buttonLogs.UseVisualStyleBackColor = false;
+            this.buttonLogs.Click += new System.EventHandler(this.buttonLogs_Click);
+            // 
             // buttonAtualizar
             // 
             this.buttonAtualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonAtualizar.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_synchronize_32;
-            this.buttonAtualizar.Location = new System.Drawing.Point(695, 13);
+            this.buttonAtualizar.Location = new System.Drawing.Point(651, 13);
             this.buttonAtualizar.Name = "buttonAtualizar";
             this.buttonAtualizar.Size = new System.Drawing.Size(38, 38);
             this.buttonAtualizar.TabIndex = 1;
@@ -120,7 +146,7 @@
             // 
             this.buttonRelatorio.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonRelatorio.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_termos_e_condições_32;
-            this.buttonRelatorio.Location = new System.Drawing.Point(651, 13);
+            this.buttonRelatorio.Location = new System.Drawing.Point(607, 13);
             this.buttonRelatorio.Name = "buttonRelatorio";
             this.buttonRelatorio.Size = new System.Drawing.Size(38, 38);
             this.buttonRelatorio.TabIndex = 3;
@@ -131,7 +157,7 @@
             // 
             this.buttonAdicionar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonAdicionar.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_adicionar_32;
-            this.buttonAdicionar.Location = new System.Drawing.Point(607, 13);
+            this.buttonAdicionar.Location = new System.Drawing.Point(563, 13);
             this.buttonAdicionar.Name = "buttonAdicionar";
             this.buttonAdicionar.Size = new System.Drawing.Size(38, 38);
             this.buttonAdicionar.TabIndex = 2;
@@ -178,19 +204,6 @@
             this.labelRodape.Text = "labelTextoRodape";
             this.labelRodape.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonPesquisar
-            // 
-            this.buttonPesquisar.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_pesquisar_16;
-            this.buttonPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonPesquisar.Location = new System.Drawing.Point(268, 68);
-            this.buttonPesquisar.Name = "buttonPesquisar";
-            this.buttonPesquisar.Size = new System.Drawing.Size(78, 25);
-            this.buttonPesquisar.TabIndex = 7;
-            this.buttonPesquisar.Text = "Pesquisar";
-            this.buttonPesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonPesquisar.UseVisualStyleBackColor = true;
-            this.buttonPesquisar.Click += new System.EventHandler(this.buttonPesquisar_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,5 +241,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxPesquisar;
         private System.Windows.Forms.Button buttonPesquisar;
+        private System.Windows.Forms.Button buttonLogs;
     }
 }

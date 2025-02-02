@@ -76,7 +76,6 @@ namespace GerenciadorDeCadastros.Servico
                 }
             }
             
-
             return erros;
         }
 
@@ -137,6 +136,55 @@ namespace GerenciadorDeCadastros.Servico
         public List<Pessoa> ListarPessoas()
         {
             return _repositorio.ListarPessoas();
+        }
+
+        /// <summary>
+        /// Verifica permissão pra acessar o sistema
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="senha"></param>
+        /// <returns></returns>
+        public List<string> VerificarLoginValido(string usuario, string senha)
+        {
+            var erros = new List<string>();
+
+            if (string.IsNullOrEmpty(usuario))
+            {
+                erros.Add("O usuário é obrigatório.");
+            }
+
+            if (string.IsNullOrEmpty(senha))
+            {
+                erros.Add("A senha é obrigatória.");
+
+            }
+
+            if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(senha))
+            {
+                bool pessoa = _repositorio.VerificarLogin(usuario, senha);
+                if (!pessoa)
+                {
+                    erros.Add("Usuário ou senha inválidos.");
+                }
+            }         
+
+            return erros;
+        }
+
+        /// <summary>
+        /// Método que verifica se o login é válido
+        /// </summary>
+        /// <param name="Usuario"></param>
+        /// <param name="Senha"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public bool VerificarLogin(String Usuario, String Senha)
+        {
+            var erros = VerificarLoginValido(Usuario, Senha);
+            if (erros.Any())
+            {
+                throw new ArgumentException(string.Join(Environment.NewLine, erros));
+            }
+            return true;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Gerenciador_de_cadastros.Dominio.Entidade;
 using GerenciadorDeCadastros.Data.Persistencia;
 using GerenciadorDeCadastros.Data.Repositorio;
 using GerenciadorDeCadastros.Dominio.Entidade;
@@ -14,11 +15,14 @@ namespace Gerenciador_de_cadastros.View
         private Pessoa _pessoa;
         ToolTip toolTip = new ToolTip();
         private IControllerPessoa _controller;
+        private IControllerLog _controllerLog;
 
+        #region Construtor
         public FrmCadastro(Pessoa pessoa)
         {
             InitializeComponent();
             _pessoa = pessoa;
+            _controllerLog = new ControllerLog(new LogRepositorio(new DatabaseService()));
             toolTip.SetToolTip(buttonExcluir, "Excluir cadastro");
         }
 
@@ -29,43 +33,9 @@ namespace Gerenciador_de_cadastros.View
             _pessoa = pessoa;
             toolTip.SetToolTip(buttonExcluir, "Excluir cadastro");
         }
+        #endregion
 
-        private void FrmCadastro_Load(object sender, EventArgs e)
-        {
-            if (_controller == null) {
-                var databaseService = new DatabaseService();
-                _controller = new ControllerPessoa(new PessoaRepositorio(databaseService));
-                if (_pessoa == null)
-                {
-                    _pessoa = new Pessoa();
-                } else {
-                    CarregarDados();
-                }
-            } else {
-                if (_pessoa == null) {
-                    _pessoa = new Pessoa();
-                } else {
-                    CarregarDados();
-                }
-            }
-        }
-
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void buttonExcluir_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Tem certeza que deseja excluir o usuário do sistema?", "Apagar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                _controller.ExcluirPessoa(_pessoa.Id);
-                this.Close();
-            }
-        }
-
+        #region Eventos privados
         /// <summary>
         /// Método que remove caracteres não alfanuméricos de um texto
         /// </summary>
@@ -103,6 +73,11 @@ namespace Gerenciador_de_cadastros.View
             maskedTextBoxEndereco.Text = _pessoa.Endereco;
         }
 
+        /// <summary>
+        /// Método que limita a quantidade de caracteres em um MaskedTextBox
+        /// </summary>
+        /// <param name="maskedTextBox"></param>
+        /// <param name="limite"></param>
         private void LimitarCaracteres(MaskedTextBox maskedTextBox, int limite)
         {
             maskedTextBox.KeyPress += (sender, e) =>
@@ -113,7 +88,9 @@ namespace Gerenciador_de_cadastros.View
                 }
             };
         }
+        #endregion
 
+        #region Eventos do formulário
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             _pessoa.Descricao = RemoverCaracteresNaoAlfanumericos(maskedTextBoxDescricao.Text);
@@ -129,9 +106,11 @@ namespace Gerenciador_de_cadastros.View
                 if (_pessoa.Id != 0)
                 {
                     _controller.AtualizarPessoa(_pessoa);
+                    _controllerLog.GeraLog(new Log { Usuario = UsuarioLogado.Usuario, Rotina = "Cadastro", Descricao = "Usuário atualizado" });
                 }
                 else
                 {
+                    _controllerLog.GeraLog(new Log { Usuario = UsuarioLogado.Usuario, Rotina = "Cadastro", Descricao = "Novo usuário adicionado" });
                     _controller.AdicionarPessoa(_pessoa);
                 }
 
@@ -145,6 +124,58 @@ namespace Gerenciador_de_cadastros.View
             catch (Exception ex)
             {
                 MessageBox.Show("Não foi possível realizar a operação: " + ex.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmCadastro_Load(object sender, EventArgs e)
+        {
+            if (_controller == null)
+            {
+                var databaseService = new DatabaseService();
+                _controller = new ControllerPessoa(new PessoaRepositorio(databaseService));
+                if (_pessoa == null)
+                {
+                    _pessoa = new Pessoa();
+                }
+                else
+                {
+                    CarregarDados();
+                }
+            }
+            else
+            {
+                if (_pessoa == null)
+                {
+                    _pessoa = new Pessoa();
+                }
+                else
+                {
+                    CarregarDados();
+                }
+            }
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Tem certeza que deseja excluir o usuário do sistema?", "Apagar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    _controller.ExcluirPessoa(_pessoa.Id);
+                    _controllerLog.GeraLog(new Log { Usuario = UsuarioLogado.Usuario, Rotina = "Cadastro", Descricao = "Usuario deletado" });
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 
@@ -173,5 +204,6 @@ namespace Gerenciador_de_cadastros.View
         {
             LimitarCaracteres(maskedTextBoxEndereco, 200);
         }
+        #endregion
     }
 }

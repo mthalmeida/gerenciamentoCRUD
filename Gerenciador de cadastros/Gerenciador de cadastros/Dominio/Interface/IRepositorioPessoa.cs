@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GerenciadorDeCadastros.Dominio.Entidade;
 
 namespace Gerenciador_de_cadastros.Dominio.Interface
@@ -35,5 +36,12 @@ namespace Gerenciador_de_cadastros.Dominio.Interface
         /// </summary>
         /// <returns></returns>
         List<Pessoa> ListarPessoas();
+
+        /// <summary>
+        /// Verifica permissão pra acessar o sistema
+        /// </summary>
+        /// <param name="Usuario"></param>
+        /// <param name="Senha"></param>
+        bool VerificarLogin(String Usuario, String Senha);
     }
 }

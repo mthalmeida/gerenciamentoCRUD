@@ -108,3 +108,5 @@ C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\G
 C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\Gerenciador de cadastros\obj\Debug\Gerencia.9FC7C0B1.Up2Date
 C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\Gerenciador de cadastros\obj\Debug\Gerenciador de cadastros.exe
 C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\Gerenciador de cadastros\obj\Debug\Gerenciador de cadastros.pdb
+C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\Gerenciador de cadastros\obj\Debug\Gerenciador_de_cadastros.View.FrmLogin.resources
+C:\Users\mathe\OneDrive\Área de Trabalho\Gerenciador\Gerenciador de cadastros\Gerenciador de cadastros\obj\Debug\Gerenciador_de_cadastros.View.FrmLogs.resources
