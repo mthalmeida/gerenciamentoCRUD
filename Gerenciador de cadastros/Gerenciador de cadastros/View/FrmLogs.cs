@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Gerenciador_de_cadastros.Dominio.Entidade;
 using GerenciadorDeCadastros.Data.Persistencia;
 using GerenciadorDeCadastros.Data.Repositorio;
+using GerenciadorDeCadastros.Dominio.Entidade;
 using GerenciadorDeCadastros.Servico;
 using GerenciadorDeCadastros.Servico.Interface;
 
@@ -31,6 +32,13 @@ namespace Gerenciador_de_cadastros.View
         private void CarregarDados()
         {
             List<Log> logs = _controller.ListaLogs();
+            foreach (Log log in logs)
+            {
+                if (!string.IsNullOrEmpty(log.Usuario))
+                {
+                    log.Usuario = CryptoService.Descriptografar(log.Usuario);
+                }
+            }
             bindingSource.DataSource = logs;
         }
         #endregion

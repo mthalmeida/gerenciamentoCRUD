@@ -65,8 +65,8 @@ namespace Gerenciador_de_cadastros.View
             }
             maskedTextBoxDescricao.Text = _pessoa.Descricao;
             maskedTextBoxDocumento.Text = _pessoa.Documento;
-            maskedTextBoxLogin.Text = _pessoa.Login;
-            maskedTextBoxSenha.Text = _pessoa.Senha;
+            maskedTextBoxLogin.Text = CryptoService.Descriptografar(_pessoa.Login);
+            maskedTextBoxSenha.Text = CryptoService.Descriptografar(_pessoa.Senha);
             dateTimePickerDataNascimento.Text = Convert.ToString(_pessoa.DataNascimento);
             maskedTextBoxTelefone.Text = _pessoa.Telefone;
             maskedTextBoxEmail.Text = _pessoa.Email;
@@ -93,14 +93,14 @@ namespace Gerenciador_de_cadastros.View
         #region Eventos do formulário
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-            _pessoa.Descricao = RemoverCaracteresNaoAlfanumericos(maskedTextBoxDescricao.Text);
+            _pessoa.Descricao = maskedTextBoxDescricao.Text;
             _pessoa.Documento = RemoverCaracteresNaoAlfanumericos(maskedTextBoxDocumento.Text);
-            _pessoa.Login = RemoverCaracteresNaoAlfanumericos(maskedTextBoxLogin.Text);
-            _pessoa.Senha = RemoverCaracteresNaoAlfanumericos(maskedTextBoxSenha.Text);
+            _pessoa.Login = CryptoService.Criptografar(RemoverCaracteresNaoAlfanumericos(maskedTextBoxLogin.Text));
+            _pessoa.Senha = CryptoService.Criptografar(RemoverCaracteresNaoAlfanumericos(maskedTextBoxSenha.Text));
             _pessoa.DataNascimento = Convert.ToDateTime(dateTimePickerDataNascimento.Text);
             _pessoa.Telefone = RemoverCaracteresNaoAlfanumericos(maskedTextBoxTelefone.Text);
             _pessoa.Email = maskedTextBoxEmail.Text;
-            _pessoa.Endereco = RemoverCaracteresNaoAlfanumericos(maskedTextBoxEndereco.Text);
+            _pessoa.Endereco = maskedTextBoxEndereco.Text;
             try
             {
                 if (_pessoa.Id != 0)
@@ -203,6 +203,18 @@ namespace Gerenciador_de_cadastros.View
         private void maskedTextBoxEndereco_KeyPress(object sender, KeyPressEventArgs e)
         {
             LimitarCaracteres(maskedTextBoxEndereco, 200);
+        }
+
+        private void buttonVisualizarOcularSenha_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxSenha.UseSystemPasswordChar)
+            {
+                maskedTextBoxSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                maskedTextBoxSenha.UseSystemPasswordChar = true;
+            }
         }
         #endregion
     }

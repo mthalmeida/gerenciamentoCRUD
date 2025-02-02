@@ -14,6 +14,7 @@ namespace Gerenciador_de_cadastros.View
         DatabaseService db = new DatabaseService();
         private IControllerPessoa _controller;
         private IControllerLog _controllerLog;
+        ToolTip toolTip = new ToolTip();
 
         #region Construtor
         public FrmLogin(IControllerPessoa controller)
@@ -21,7 +22,7 @@ namespace Gerenciador_de_cadastros.View
             InitializeComponent();
             _controller = controller;
             _controllerLog = new ControllerLog(new LogRepositorio(new DatabaseService()));
-
+            toolTip.SetToolTip(buttonVisualizarOcularSenha, "Visualizar/Ocultar senha");
         }
         #endregion
 
@@ -35,8 +36,8 @@ namespace Gerenciador_de_cadastros.View
         {
             try
             {
-                String Usuario = maskedTextBoxUsuario.Text;
-                String Senha = maskedTextBoxSenha.Text;
+                String Usuario = CryptoService.Criptografar(maskedTextBoxUsuario.Text);
+                String Senha = CryptoService.Criptografar(maskedTextBoxSenha.Text);
                 _controller.VerificarLogin(Usuario, Senha);
 
                 UsuarioLogado.Usuario = Usuario;
@@ -51,7 +52,18 @@ namespace Gerenciador_de_cadastros.View
                 string mensagemErro = "Não foi possível realizar a operação:\n\n" + ex.Message;
                 MessageBox.Show(mensagemErro, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        private void buttonVisualizarOcularSenha_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxSenha.UseSystemPasswordChar)
+            {
+                maskedTextBoxSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                maskedTextBoxSenha.UseSystemPasswordChar = true;
+            }
         }
         #endregion
     }

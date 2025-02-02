@@ -35,6 +35,7 @@
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelSenha = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.buttonVisualizarOcularSenha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,8 +43,9 @@
             // 
             this.maskedTextBoxSenha.Location = new System.Drawing.Point(36, 200);
             this.maskedTextBoxSenha.Name = "maskedTextBoxSenha";
-            this.maskedTextBoxSenha.Size = new System.Drawing.Size(230, 20);
+            this.maskedTextBoxSenha.Size = new System.Drawing.Size(205, 20);
             this.maskedTextBoxSenha.TabIndex = 1;
+            this.maskedTextBoxSenha.UseSystemPasswordChar = true;
             // 
             // maskedTextBoxUsuario
             // 
@@ -96,12 +98,23 @@
             this.pictureBox.TabIndex = 5;
             this.pictureBox.TabStop = false;
             // 
+            // buttonVisualizarOcularSenha
+            // 
+            this.buttonVisualizarOcularSenha.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_visualizar_arquivo_16;
+            this.buttonVisualizarOcularSenha.Location = new System.Drawing.Point(239, 198);
+            this.buttonVisualizarOcularSenha.Name = "buttonVisualizarOcularSenha";
+            this.buttonVisualizarOcularSenha.Size = new System.Drawing.Size(27, 24);
+            this.buttonVisualizarOcularSenha.TabIndex = 6;
+            this.buttonVisualizarOcularSenha.UseVisualStyleBackColor = true;
+            this.buttonVisualizarOcularSenha.Click += new System.EventHandler(this.buttonVisualizarOcularSenha_Click);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(304, 315);
+            this.Controls.Add(this.buttonVisualizarOcularSenha);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.labelSenha);
             this.Controls.Add(this.labelUsuario);
@@ -109,6 +122,7 @@
             this.Controls.Add(this.maskedTextBoxUsuario);
             this.Controls.Add(this.maskedTextBoxSenha);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -126,5 +140,6 @@
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.Label labelSenha;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button buttonVisualizarOcularSenha;
     }
 }

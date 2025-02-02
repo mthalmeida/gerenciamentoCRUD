@@ -29,6 +29,10 @@ namespace Gerenciador_de_cadastros.View
         private void FrmRelatorioPessoas_Load(object sender, EventArgs e)
         {
             this.reportViewer1.LocalReport.DataSources.Clear();
+            foreach (var pessoa in _pessoas)
+            {
+                pessoa.Login = CryptoService.Descriptografar(pessoa.Login);
+            }
             this.reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetePessoas", _pessoas));
             this.reportViewer1.RefreshReport();
             _controllerLog.GeraLog(new Log { Usuario = UsuarioLogado.Usuario, Rotina = "Relatório", Descricao = "Relatório gerado para visualização" });

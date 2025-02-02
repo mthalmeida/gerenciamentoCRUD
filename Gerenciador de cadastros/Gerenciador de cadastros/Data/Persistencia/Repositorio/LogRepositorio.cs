@@ -53,7 +53,7 @@ namespace GerenciadorDeCadastros.Data.Repositorio
             using (var connection = new FbConnection(_databaseService.ConnectionString))
             {
                 connection.Open();
-                using (var cmd = new FbCommand("SELECT * FROM LOGS", connection))
+                using (var cmd = new FbCommand("SELECT * FROM LOGS ORDER BY LOG_DATA_HORA DESC", connection))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

@@ -40,7 +40,7 @@ namespace Gerenciador_de_cadastros.View
         private void CarregaLabelRodape()
         {
             string dataHoraAtual = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            labelRodape.Text = dataHoraAtual + " | " + "Usuário logado: " + UsuarioLogado.Usuario;
+            labelRodape.Text = dataHoraAtual + " | " + "Usuário logado: " + CryptoService.Descriptografar(UsuarioLogado.Usuario);
         }
 
         /// <summary>
@@ -71,9 +71,21 @@ namespace Gerenciador_de_cadastros.View
         private void CarregarDados()
         {
             List<Pessoa> pessoas = _controller.ListarPessoas();
-            bindingSource.DataSource = pessoas;
+            foreach (var pessoa in pessoas)
+            {
+                if (!string.IsNullOrEmpty(pessoa.Login))
+                {
+                    pessoa.Login = CryptoService.Descriptografar(pessoa.Login);
+                }
 
+                if (!string.IsNullOrEmpty(pessoa.Senha))
+                {
+                    pessoa.Senha = CryptoService.Descriptografar(pessoa.Senha);
+                }
+            }
+            bindingSource.DataSource = pessoas;
         }
+
         #endregion
 
         #region Eventos de formulário

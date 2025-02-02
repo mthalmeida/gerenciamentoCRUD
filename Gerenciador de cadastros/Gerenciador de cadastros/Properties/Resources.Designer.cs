@@ -143,6 +143,16 @@ namespace Gerenciador_de_cadastros.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_visualizar_arquivo_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-visualizar-arquivo-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login_escudo_protecao_12870355_10491523 {
             get {
                 object obj = ResourceManager.GetObject("login-escudo-protecao-12870355-10491523", resourceCulture);

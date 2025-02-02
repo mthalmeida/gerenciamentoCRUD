@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.dataGridViewPessoas = new System.Windows.Forms.DataGridView();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.buttonPesquisar = new System.Windows.Forms.Button();
@@ -212,6 +213,7 @@
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelSuperior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.Text = "Gerenciamento";

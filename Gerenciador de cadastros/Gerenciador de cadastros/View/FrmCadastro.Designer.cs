@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastro));
             this.maskedTextBoxEndereco = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxEmail = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxTelefone = new System.Windows.Forms.MaskedTextBox();
@@ -45,6 +46,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonVisualizarOcularSenha = new System.Windows.Forms.Button();
             this.labelId = new System.Windows.Forms.Label();
             this.buttonSalvar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -80,8 +82,9 @@
             // 
             this.maskedTextBoxSenha.Location = new System.Drawing.Point(165, 105);
             this.maskedTextBoxSenha.Name = "maskedTextBoxSenha";
-            this.maskedTextBoxSenha.Size = new System.Drawing.Size(180, 20);
+            this.maskedTextBoxSenha.Size = new System.Drawing.Size(156, 20);
             this.maskedTextBoxSenha.TabIndex = 3;
+            this.maskedTextBoxSenha.UseSystemPasswordChar = true;
             this.maskedTextBoxSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxSenha_KeyPress);
             // 
             // maskedTextBoxLogin
@@ -190,6 +193,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonVisualizarOcularSenha);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.maskedTextBoxEndereco);
@@ -212,6 +216,16 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro de usuário";
+            // 
+            // buttonVisualizarOcularSenha
+            // 
+            this.buttonVisualizarOcularSenha.Image = global::Gerenciador_de_cadastros.Properties.Resources.icons8_visualizar_arquivo_16;
+            this.buttonVisualizarOcularSenha.Location = new System.Drawing.Point(318, 103);
+            this.buttonVisualizarOcularSenha.Name = "buttonVisualizarOcularSenha";
+            this.buttonVisualizarOcularSenha.Size = new System.Drawing.Size(27, 24);
+            this.buttonVisualizarOcularSenha.TabIndex = 17;
+            this.buttonVisualizarOcularSenha.UseVisualStyleBackColor = true;
+            this.buttonVisualizarOcularSenha.Click += new System.EventHandler(this.buttonVisualizarOcularSenha_Click);
             // 
             // labelId
             // 
@@ -267,6 +281,7 @@
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCadastro";
@@ -302,5 +317,6 @@
         private System.Windows.Forms.Button buttonSalvar;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonExcluir;
+        private System.Windows.Forms.Button buttonVisualizarOcularSenha;
     }
 }
